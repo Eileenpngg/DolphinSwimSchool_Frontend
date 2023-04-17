@@ -21,11 +21,12 @@ const LoginScreen = (props) => {
     console.log(errors);
   };
 
+  const url= "https://dolphinswimschoolbackend.onrender.com"
+
   async function handleLogin({
-    url = "http://127.0.0.1:5001/api/user/login",
     data = loginDetails,
   }) {
-    const response = await fetch(url, {
+    const response = await fetch(`${url}/api/user/login`, {
       method: "POST",
       headers: {
         Accept: "application/json",

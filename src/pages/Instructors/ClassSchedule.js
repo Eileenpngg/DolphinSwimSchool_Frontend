@@ -10,7 +10,6 @@ const ClassSchedule = () => {
     "Friday",
     "Saturday",
   ];
-
   const nowDate = new Date().toISOString().split("T")[0];
   const currentDay = weekDay[new Date().getDay()];
   const userCtx = useContext(UserContext);
