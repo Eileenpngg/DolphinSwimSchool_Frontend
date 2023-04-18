@@ -35,6 +35,7 @@ const LoginScreen = (props) => {
     const jResponse = await response.json();
     console.log(jResponse);
     if (response.status === 500) {
+      console.log(response);
       alert(`Invalid username/password: ${jResponse.message}`);
     } else {
       userCtx.setUserDetails({ ...jResponse });
