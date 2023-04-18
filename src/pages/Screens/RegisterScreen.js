@@ -37,6 +37,7 @@ const RegisterScreen = (props) => {
   const url = "https://dolphinswimschoolbackend.onrender.com";
 
   async function handleRegister({ data }) {
+    console.log(data);
     const response = await fetch(`${url}/api/user/create`, {
       method: "POST",
       headers: {
