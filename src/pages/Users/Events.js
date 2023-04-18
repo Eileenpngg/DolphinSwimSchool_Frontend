@@ -16,21 +16,22 @@ const Events = () => {
     setEventId(e.target.key);
     setSelected(e.target.value);
     const data = { user_id: userCtx.userDetails.id, event_id: e.target.value };
-    console.log(data)
+    console.log(data);
     eventSignUp({ data });
   };
 
   const handleDelete = async (e) => {
-    console.log(e.target.value)
-    await setDeleteId(e.target.value)
-    await deleteEvent()
-    getEvents()
-  }
+    console.log(e.target.value);
+    await setDeleteId(e.target.value);
+    await deleteEvent();
+    getEvents();
+  };
 
+  const url = "https://dolphinswimschoolbackend.onrender.com";
 
   //Gets list of events
-  async function getEvents(url = "http://127.0.0.1:5001/api/events/get") {
-    const response = await fetch(url, {
+  async function getEvents() {
+    const response = await fetch(`${url}/api/events/get`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -48,11 +49,8 @@ const Events = () => {
   }
 
   //Sign up for event
-  async function eventSignUp({
-    url = "http://127.0.0.1:5001/api/event/signup",
-    data,
-  }) {
-    const response = await fetch(url, {
+  async function eventSignUp({ data }) {
+    const response = await fetch(`${url}/api/event/signup`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -71,11 +69,9 @@ const Events = () => {
   }
 
   //Delete Event
-  async function deleteEvent(
-    url = `http://127.0.0.1:5001/api/event/${deleteId}`,
-  ) {
-    console.log(url)
-    const response = await fetch(url, {
+  async function deleteEvent() {
+    console.log(url);
+    const response = await fetch(`${url}/api/event/${deleteId}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",
@@ -94,11 +90,11 @@ const Events = () => {
 
   useEffect(() => {
     getEvents();
-  },[]);
+  }, []);
 
   return (
     <>
-      <h1 className="text-center m-4" style={{color:'#FFFFFF'}}>
+      <h1 className="text-center m-4" style={{ color: "#FFFFFF" }}>
         <u>Events</u>
       </h1>
       {events
@@ -114,19 +110,30 @@ const Events = () => {
                 />
               </div>
               <div className="col-3 d-flex flex-column align-item-center h-50">
-                <h1 className="text-center m-4" style={{color:'#FFFFFF'}}>{event.title}</h1>
-                <p style={{color:'#FFFFFF'}}>
+                <h1 className="text-center m-4" style={{ color: "#FFFFFF" }}>
+                  {event.title}
+                </h1>
+                <p style={{ color: "#FFFFFF" }}>
                   Date: {event.start_date} - {event.end_date}
                 </p>
-                <p style={{color:'#FFFFFF'}}>
+                <p style={{ color: "#FFFFFF" }}>
                   Time: {event.start_time} - {event.end_time}
                 </p>
-                <p className={`text-start d-flex m-0`} style={{color:'#FFFFFF'}}>{event.description}</p>
+                <p
+                  className={`text-start d-flex m-0`}
+                  style={{ color: "#FFFFFF" }}
+                >
+                  {event.description}
+                </p>
               </div>
               <div className="col-3 d-flex flex-column h-100">
-                {userctx.userDetails.is_instructor ? <EditEventForm event={event}/> : " "}
                 {userctx.userDetails.is_instructor ? (
-                  <ViewDetails event={event}/>
+                  <EditEventForm event={event} />
+                ) : (
+                  " "
+                )}
+                {userctx.userDetails.is_instructor ? (
+                  <ViewDetails event={event} />
                 ) : (
                   <button
                     key={event.id}
@@ -137,7 +144,7 @@ const Events = () => {
                     onClick={(e) => handleSignUp(e)}
                     style={{
                       backgroundColor:
-                    event.id.toString() === selected ? "red" : "",
+                        event.id.toString() === selected ? "red" : "",
                     }}
                   >
                     {event.id.toString() === selected ? "Signed Up" : "Sign up"}
@@ -148,7 +155,7 @@ const Events = () => {
                     value={event.id}
                     className="btn btn-secondary w-25 mt-4"
                     type="submit"
-                    onClick={(e)=>handleDelete(e)}
+                    onClick={(e) => handleDelete(e)}
                   >
                     Delete event
                   </button>

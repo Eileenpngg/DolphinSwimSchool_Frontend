@@ -20,9 +20,9 @@ const BookClassForm = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    bookClass()
+    bookClass();
     console.log(data);
-    updatePackage()
+    updatePackage();
     navigate("/book-class-success");
   };
 
@@ -30,14 +30,11 @@ const BookClassForm = () => {
     console.log(errors);
   };
 
+  const url = "https://dolphinswimschoolbackend.onrender.com";
 
   //Populates the classes available when date is selected
-  async function getClasses({
-    url = "http://127.0.0.1:5001/api/classes/get",
-    level,
-    date,
-  }) {
-    const response = await fetch(url, {
+  async function getClasses({ level, date }) {
+    const response = await fetch(`${url}/api/classes/get`, {
       method: "PUT",
       headers: {
         Accept: "application/json",
@@ -54,7 +51,7 @@ const BookClassForm = () => {
     return jResponse;
   }
 
-  //Populates instructor name 
+  //Populates instructor name
   async function getInstructor({
     url = "http://127.0.0.1:5001/api/instructors/get",
     level,
@@ -64,7 +61,7 @@ const BookClassForm = () => {
     const response = await fetch(url, {
       method: "PUT",
       headers: {
-        "Accept": "application/json",
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ level, date, time }),
@@ -81,19 +78,21 @@ const BookClassForm = () => {
 
   //Submits form and populates data
   async function bookClass(
-    url = "http://127.0.0.1:5001/api/class/book", 
-    data= {user_id: userCtx.userDetails.id,
+    url = "http://127.0.0.1:5001/api/class/book",
+    data = {
+      user_id: userCtx.userDetails.id,
       level: userCtx.userDetails.level,
       date,
-      time,}) 
-      {
+      time,
+    }
+  ) {
     const response = await fetch(url, {
       method: "POST",
       headers: {
-        "Accept": "application/json",
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     });
     const jResponse = await response.json();
     console.log(jResponse);
@@ -102,30 +101,29 @@ const BookClassForm = () => {
     } else {
       console.log({ ...jResponse });
     }
-    return jResponse;  
+    return jResponse;
   }
 
   //Updates packages
   async function updatePackage(
-    url= `http://127.0.0.1:5001/api/packages/${userCtx.userDetails.id}`,
-  ){
-    const response= await fetch(url,{
-      method:'DELETE',
-      headers:{
-        "Accept":"application/json",
-        "Content-Type":"application/json"
+    url = `http://127.0.0.1:5001/api/packages/${userCtx.userDetails.id}`
+  ) {
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
-    })
-    const jResponse= await response.json();
-    console.log(jResponse)
-    if (response.status===401){
-      console.log(`${jResponse.message}`)
-    } else{
-      console.log({...jResponse})
+    });
+    const jResponse = await response.json();
+    console.log(jResponse);
+    if (response.status === 401) {
+      console.log(`${jResponse.message}`);
+    } else {
+      console.log({ ...jResponse });
     }
-    return jResponse
+    return jResponse;
   }
-
 
   //Use Effects
   useEffect(() => {
@@ -153,8 +151,11 @@ const BookClassForm = () => {
   return (
     <div>
       <section className="container-md" id="book_class">
-        <form onSubmit={handleSubmit(onSubmit, onError)} style={{marginTop:'10vh'}}>
-          <h5 className="m-4" style={{color:'#FFFFFF'}}>
+        <form
+          onSubmit={handleSubmit(onSubmit, onError)}
+          style={{ marginTop: "10vh" }}
+        >
+          <h5 className="m-4" style={{ color: "#FFFFFF" }}>
             <u>Student Details</u>
           </h5>
           <div className="form-outline m-4 row justify-content-center">
@@ -231,20 +232,27 @@ const BookClassForm = () => {
               </p>
             </div>
             <div className="col-md-2"></div>
-            <div className="col-md-2 flex-column" style={{zIndex:'99'}}>
+            <div className="col-md-2 flex-column" style={{ zIndex: "99" }}>
               <button className="btn btn-secondary w-100 mb-4" type="submit">
                 Book Class
               </button>
-              <button className="btn btn-secondary w-100 mb-4" type="submit" onClick={() => navigate("/")}>
+              <button
+                className="btn btn-secondary w-100 mb-4"
+                type="submit"
+                onClick={() => navigate("/")}
+              >
                 Cancel
               </button>
             </div>
           </div>
 
-          <h5 className="m-4" style={{color:'#FFFFFF'}}>
+          <h5 className="m-4" style={{ color: "#FFFFFF" }}>
             <u>Booking Details</u>
           </h5>
-          <div className="form-outline m-4 row justify-content-center" style={{height:'10vw'}}>
+          <div
+            className="form-outline m-4 row justify-content-center"
+            style={{ height: "10vw" }}
+          >
             <div className="col-md-4">
               <input
                 type="date"
@@ -313,7 +321,12 @@ const BookClassForm = () => {
             </div>
             <div className="col-md-1"></div>
             <div className="col-md-3 align-self-end">
-              <img src={'/swimschoollogo.png'} alt="swimschoollogo" width="300px" style={{transform:'translateY(-50%)'}}/>
+              <img
+                src={"/swimschoollogo.png"}
+                alt="swimschoollogo"
+                width="300px"
+                style={{ transform: "translateY(-50%)" }}
+              />
             </div>
           </div>
           <div className="form-outline row justify-content-center">
@@ -325,8 +338,7 @@ const BookClassForm = () => {
                 defaultValue={instructor_name}
                 {...register("instructor_name")}
               />
-              <p className="mt-2 text-danger text-center">
-              </p>
+              <p className="mt-2 text-danger text-center"></p>
             </div>
           </div>
         </form>

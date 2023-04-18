@@ -23,9 +23,11 @@ const ClassSchedule = () => {
     getSchedule({ instructor_name, date, session_id });
   };
   
+  const url= "https://dolphinswimschoolbackend.onrender.com"
+
   //To populate sessions drop down
-  async function getSessions(url = "http://127.0.0.1:5001/api/sessions/get") {
-    const response = await fetch(url, {
+  async function getSessions() {
+    const response = await fetch(`${url}/api/sessions/get`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -44,12 +46,11 @@ const ClassSchedule = () => {
 
   //To get schedule
   async function getSchedule({
-    url = "http://127.0.0.1:5001/api/schedule/get",
     instructor_name,
     date,
     session_id,
   }) {
-    const response = await fetch(url, {
+    const response = await fetch(`${url}/api/schedule/get`, {
       method: "PUT",
       headers: {
         Accept: "application/json",

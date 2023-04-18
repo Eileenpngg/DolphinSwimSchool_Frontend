@@ -30,9 +30,11 @@ const CreateAClassForm = () => {
     console.log(errors);
   };
 
+  const url= "https://dolphinswimschoolbackend.onrender.com"
+
   //To populate sessions drop down
-  async function getSessions(url = "http://127.0.0.1:5001/api/sessions/get") {
-    const response = await fetch(url, {
+  async function getSessions() {
+    const response = await fetch(`${url}/api/sessions/get`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -55,10 +57,9 @@ const CreateAClassForm = () => {
 
   //To create a class
   async function createClass({
-    url = "http://127.0.0.1:5001/api/classes/create",
     data,
   }) {
-    const response = await fetch(url, {
+    const response = await fetch(`${url}/api/classes/create`, {
       method: "POST",
       headers: {
         Accept: "application/json",

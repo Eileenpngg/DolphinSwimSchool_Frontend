@@ -23,10 +23,10 @@ function App() {
   const [userDetails, setUserDetails] = useState({});
   const [remainingPackage, setRemainingPackage]=useState()
 
-  const getPackage=async({
-    url=`http://127.0.0.1:5001/api/packages/${userDetails.id}`
-  })=>{
-    const response= await fetch(url, {
+  const url = "https://dolphinswimschoolbackend.onrender.com";
+
+  const getPackage=async()=>{
+    const response= await fetch(`${url}/api/packages/${userDetails.id}`, {
       method:'PUT',
       headers:{
         "Accept": "application/json",

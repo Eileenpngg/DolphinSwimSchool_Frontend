@@ -27,12 +27,13 @@ const EditEventForm = ({ event }) => {
     setId(e.target.value)
   };
 
+  const url= "https://dolphinswimschoolbackend.onrender.com"
+
   //To edit event
     async function updateEvent({
-      url = `http://127.0.0.1:5001/api/events/${id}`,
       data
     }) {
-      const response = await fetch(url, {
+      const response = await fetch(`${url}/api/events/${id}`, {
         method: "PATCH",
         headers: {
           "Accept": "application/json",

@@ -21,11 +21,9 @@ const LoginScreen = (props) => {
     console.log(errors);
   };
 
-  const url= "https://dolphinswimschoolbackend.onrender.com"
+  const url = "https://dolphinswimschoolbackend.onrender.com";
 
-  async function handleLogin({
-    data = loginDetails,
-  }) {
+  async function handleLogin({ data = loginDetails }) {
     const response = await fetch(`${url}/api/user/login`, {
       method: "POST",
       headers: {
@@ -36,7 +34,7 @@ const LoginScreen = (props) => {
     });
     const jResponse = await response.json();
     console.log(jResponse);
-    if (response.status === 401) {
+    if (response.status === 500) {
       alert(`Invalid username/password: ${jResponse.message}`);
     } else {
       userCtx.setUserDetails({ ...jResponse });

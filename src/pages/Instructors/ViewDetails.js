@@ -16,11 +16,12 @@ const ViewDetails = ({ event }) => {
     getDetails()
     },[id])
 
+  const url= "https://dolphinswimschoolbackend.onrender.com"
+
   //To edit event
     async function getDetails(
-      url = `http://127.0.0.1:5001/api/event/student/${id}`
     ) {
-      const response = await fetch(url, {
+      const response = await fetch(`${url}/api/event/student/${id}`, {
         method: "get",
         headers: {
           "Accept": "application/json",
