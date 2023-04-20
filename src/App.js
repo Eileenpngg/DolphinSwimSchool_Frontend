@@ -51,7 +51,6 @@ function App() {
     },[userDetails])
 
   function displayLandingPage() {
-
   switch (userDetails.is_instructor) {
     case true:
       return (
