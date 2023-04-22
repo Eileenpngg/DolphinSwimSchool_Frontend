@@ -3,7 +3,7 @@ import styles from "./login.module.css";
 import { useForm } from "react-hook-form";
 import UserContext from "../../context";
 import { SettingsSystemDaydream } from "@mui/icons-material";
-import { getToken, getUser } from "./userUtilities";
+import { getToken, getUser } from "../../userUtilities";
 
 const LoginScreen = (props) => {
   const [loginDetails, setLoginDetails] = useState();
