@@ -57,6 +57,7 @@ function App() {
       case false:
         return <StudentLanding />;
       default:
+        console.log(userDetails.is_instructor);
         return <LoginScreen />;
     }
   }
