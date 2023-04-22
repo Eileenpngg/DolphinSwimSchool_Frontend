@@ -21,7 +21,7 @@ import About from "./pages/Users/About";
 import { getToken, getUser } from "./userUtilities";
 function App() {
   const [userDetails, setUserDetails] = useState(getUser());
-  const [remainingPackage, setRemainingPackage] = useState();
+  const [remainingPackage, setRemainingPackage] = useState(1);
 
   const url = "https://dolphinswimschoolbackend.onrender.com";
 
@@ -81,7 +81,7 @@ function App() {
         <Route path="/book-class-success" element={<BookClassSuccess />} />
         <Route
           path="/profile"
-          element={<Profile remainingPackage={ remainingPackage } />}
+          element={<Profile remainingPackage={remainingPackage} />}
         />
         <Route path="/about" element={<About />} />
       </Routes>
