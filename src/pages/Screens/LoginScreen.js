@@ -3,6 +3,7 @@ import styles from "./login.module.css";
 import { useForm } from "react-hook-form";
 import UserContext from "../../context";
 import { SettingsSystemDaydream } from "@mui/icons-material";
+import { getToken, getUser } from "./userUtilities";
 
 const LoginScreen = (props) => {
   const [loginDetails, setLoginDetails] = useState();
@@ -39,8 +40,9 @@ const LoginScreen = (props) => {
       console.log(response);
       alert(jResponse);
     } else {
-      userCtx.setUserDetails({ ...jResponse });
       localStorage.setItem("token", jResponse.token);
+      userCtx.setUserDetails(getUser());
+      console.log(getUser());
     }
     return jResponse;
   }
