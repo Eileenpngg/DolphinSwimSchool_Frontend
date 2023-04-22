@@ -36,10 +36,10 @@ function App() {
 
     const jResponse = await response.json();
     if (response.status === 401) {
-      console.log(`${jResponse.message}`);
+      console.log(`${jResponse}`);
     } else {
       console.log(jResponse);
-      setRemainingPackage(jResponse.remaining);
+      // setRemainingPackage(jResponse.remaining);
     }
     return jResponse;
   };
