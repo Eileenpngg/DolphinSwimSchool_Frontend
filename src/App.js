@@ -81,7 +81,7 @@ function App() {
         <Route path="/book-class-success" element={<BookClassSuccess />} />
         <Route
           path="/profile"
-          element={<Profile remainingPackage={{ remainingPackage }} />}
+          element={<Profile remainingPackage={ remainingPackage } />}
         />
         <Route path="/about" element={<About />} />
       </Routes>
