@@ -22,8 +22,8 @@ const ClassSchedule = () => {
     const session_id = e.target.value;
     getSchedule({ instructor_name, date, session_id });
   };
-  
-  const url= "https://dolphinswimschoolbackend.onrender.com"
+
+  const url = "https://dolphinswimschoolbackend.onrender.com";
 
   //To populate sessions drop down
   async function getSessions() {
@@ -45,11 +45,7 @@ const ClassSchedule = () => {
   }
 
   //To get schedule
-  async function getSchedule({
-    instructor_name,
-    date,
-    session_id,
-  }) {
+  async function getSchedule({ instructor_name, date, session_id }) {
     const response = await fetch(`${url}/api/schedule/get`, {
       method: "PUT",
       headers: {

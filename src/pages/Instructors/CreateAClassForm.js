@@ -30,7 +30,7 @@ const CreateAClassForm = () => {
     console.log(errors);
   };
 
-  const url= "https://dolphinswimschoolbackend.onrender.com"
+  const url = "https://dolphinswimschoolbackend.onrender.com";
 
   //To populate sessions drop down
   async function getSessions() {
@@ -56,9 +56,7 @@ const CreateAClassForm = () => {
   }, []);
 
   //To create a class
-  async function createClass({
-    data,
-  }) {
+  async function createClass({ data }) {
     const response = await fetch(`${url}/api/classes/create`, {
       method: "POST",
       headers: {
@@ -85,9 +83,12 @@ const CreateAClassForm = () => {
     <>
       <div>
         <section className="container-md" id="book_class">
-          <form onSubmit={handleSubmit(onSubmit, onError)} style={{
-            marginTop:'20vh'
-          }}>
+          <form
+            onSubmit={handleSubmit(onSubmit, onError)}
+            style={{
+              marginTop: "20vh",
+            }}
+          >
             <h5
               className="m-4"
               style={{
@@ -135,10 +136,13 @@ const CreateAClassForm = () => {
                 <button className="btn btn-secondary w-100 mb-4" type="submit">
                   Add Class
                 </button>
-                <button className="btn btn-secondary w-100 mb-4" type="cancel" onClick={() => navigate("/")}>
-                Cancel
+                <button
+                  className="btn btn-secondary w-100 mb-4"
+                  type="cancel"
+                  onClick={() => navigate("/")}
+                >
+                  Cancel
                 </button>
-                
               </div>
             </div>
             <h5
@@ -193,7 +197,12 @@ const CreateAClassForm = () => {
               </div>
               <div className="col-md-1"></div>
               <div className="col-md-3 align-self-end">
-                <img src={'/swimschoollogo.png'} alt="swimschoollogo" width="300px" style={{transform:'translateY(-40%)'}}/>
+                <img
+                  src={"/swimschoollogo.png"}
+                  alt="swimschoollogo"
+                  width="300px"
+                  style={{ transform: "translateY(-40%)" }}
+                />
               </div>
             </div>
           </form>

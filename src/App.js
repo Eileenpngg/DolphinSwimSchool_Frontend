@@ -21,7 +21,7 @@ import About from "./pages/Users/About";
 import { getToken, getUser } from "./userUtilities";
 function App() {
   const [userDetails, setUserDetails] = useState(getUser());
-  const [remainingPackage, setRemainingPackage] = useState(1);
+  const [remainingPackage, setRemainingPackage] = useState(0);
 
   const url = "https://dolphinswimschoolbackend.onrender.com";
 

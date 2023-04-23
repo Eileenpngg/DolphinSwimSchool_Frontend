@@ -22,12 +22,6 @@ const RegisterScreen = (props) => {
     navigate("/registersuccess");
   };
 
-  // const user =
-  // {
-  //   email: userDetails.email,
-  //   password: userDetails.password
-  // }
-
   const onError = (errors) => {
     console.log(errors);
   };

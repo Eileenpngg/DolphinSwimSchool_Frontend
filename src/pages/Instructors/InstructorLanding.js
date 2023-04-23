@@ -14,9 +14,9 @@ const InstructorLanding = () => {
   const [imageIndex, setImageIndex] = useState(0);
   const images = [kidsswimming, events, purchasepackage];
   const headings = ["Create A Class", "Events", "View Schedules"];
-  const links=['/create-a-class', '/events', '/class-schedule']
+  const links = ["/create-a-class", "/events", "/class-schedule"];
   const navigate = useNavigate();
-  
+
   const NextArrow = ({ onClick }) => {
     return (
       <>
@@ -34,7 +34,7 @@ const InstructorLanding = () => {
   };
   const PrevArrow = ({ onClick }) => {
     return (
-      <IconContext.Provider value={{ color: "white" , cursor:'pointer'}}>
+      <IconContext.Provider value={{ color: "white", cursor: "pointer" }}>
         <div
           className="arrow prev"
           style={{ top: "140%", left: "25%", position: "absolute" }}
@@ -58,59 +58,61 @@ const InstructorLanding = () => {
   };
   return (
     <>
-    <Navbar />
-    <div className='main'>
-        <img 
-        src='/swimschoollogo.png'
-        alt='swimschoollogo'
-        style={{
-        transform: "translate(40%,-25%)",
-        }}/>
+      <Navbar />
+      <div className="main">
+        <img
+          src="/swimschoollogo.png"
+          alt="swimschoollogo"
+          style={{
+            transform: "translate(40%,-25%)",
+          }}
+        />
 
-      <section style={{ marginBottom: "30vh" , transform:'translateY(-40%)'}}>
-        <div>
-          <Slider {...settings}>
-            {images.map((img, idx) => (
-              <div
-                className={idx === imageIndex ? "slide activeSlide" : "slide"}
-              >
-                <div width="33vw" style={{}}>
-                  <p
-                    style={{
-                      fontFamily: "verdana, sans-serif",
-                      fontSize: "20px",
-                      color:"white",
-                      padding: "20px",
-                      marginBottom: "100px",
-                      transform: "translateX(-50%)",
-                      textAlign: "center",
-                    }}
-                  >
-                    {headings[idx]}
-                  </p>
+        <section
+          style={{ marginBottom: "30vh", transform: "translateY(-40%)" }}
+        >
+          <div>
+            <Slider {...settings}>
+              {images.map((img, idx) => (
+                <div
+                  className={idx === imageIndex ? "slide activeSlide" : "slide"}
+                >
+                  <div width="33vw" style={{}}>
+                    <p
+                      style={{
+                        fontFamily: "verdana, sans-serif",
+                        fontSize: "20px",
+                        color: "white",
+                        padding: "20px",
+                        marginBottom: "100px",
+                        transform: "translateX(-50%)",
+                        textAlign: "center",
+                      }}
+                    >
+                      {headings[idx]}
+                    </p>
+                  </div>
+                  <div>
+                    <img
+                      src={img}
+                      alt={img}
+                      width={500}
+                      height={300}
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        transform: "translateX(-50%)",
+                        borderRadius: "10%",
+                      }}
+                      onClick={() => navigate(links[idx])}
+                    />
+                  </div>
                 </div>
-                <div>
-                  <img
-                    src={img}
-                    alt={img}
-                    width={500}
-                    height={300}
-                    style={{
-                      position: "absolute",
-                      top: "50%",
-                      transform: "translateX(-50%)",
-                      borderRadius: "10%",
-                    }}
-                    onClick={()=>navigate(links[idx])}
-                  />
-
-                </div>
-              </div>
-            ))}
-          </Slider>
-        </div>
-      </section>
-      <Footer />
+              ))}
+            </Slider>
+          </div>
+        </section>
+        <Footer />
       </div>
     </>
   );

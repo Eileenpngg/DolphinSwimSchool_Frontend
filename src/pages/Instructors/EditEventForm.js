@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 
 const EditEventForm = ({ event }) => {
   const navigate = useNavigate();
-  const [id, setId]= useState();
+  const [id, setId] = useState();
 
   //react-hook-forms functionality
   const {
@@ -15,7 +15,7 @@ const EditEventForm = ({ event }) => {
 
   const onSubmit = async (data) => {
     console.log(data);
-    updateEvent({data})
+    updateEvent({ data });
     navigate("/events");
   };
 
@@ -24,29 +24,28 @@ const EditEventForm = ({ event }) => {
   };
 
   const handleClick = (e) => {
-    setId(e.target.value)
+    setId(e.target.value);
   };
 
-  const url= "https://dolphinswimschoolbackend.onrender.com"
+  const url = "https://dolphinswimschoolbackend.onrender.com";
 
   //To edit event
-    async function updateEvent({
-      data
-    }) {
-      const response = await fetch(`${url}/api/events/${id}`, {
-        method: "PATCH",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data)
-      });
-      const jResponse = await response.json();
-      console.log(jResponse);
-      if (response.status === 401) {
-        console.log(`${jResponse.message}`);
-      } 
-      return jResponse;  }
+  async function updateEvent({ data }) {
+    const response = await fetch(`${url}/api/events/${id}`, {
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const jResponse = await response.json();
+    console.log(jResponse);
+    if (response.status === 401) {
+      console.log(`${jResponse.message}`);
+    }
+    return jResponse;
+  }
 
   return (
     <>
@@ -155,7 +154,7 @@ const EditEventForm = ({ event }) => {
               </div>
 
               <div class="modal-footer">
-                <button type="submit" class="btn btn-warning"> 
+                <button type="submit" class="btn btn-warning">
                   Edit
                 </button>
                 <button
@@ -172,6 +171,5 @@ const EditEventForm = ({ event }) => {
       </div>
     </>
   );
-
 };
 export default EditEventForm;

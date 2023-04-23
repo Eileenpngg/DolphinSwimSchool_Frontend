@@ -1,42 +1,39 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
 
 const ViewDetails = ({ event }) => {
-  const navigate = useNavigate();
-  const [id, setId]=useState()
-  const [students, setStudents]= useState();
+  const [id, setId] = useState();
+  const [students, setStudents] = useState();
 
   const handleClick = (e) => {
-    setId(e.target.value)
-    console.log(id)
+    setId(e.target.value);
+    console.log(id);
   };
 
-  useEffect(()=>{
-    getDetails()
-    },[id])
+  useEffect(() => {
+    getDetails();
+  }, [id]);
 
-  const url= "https://dolphinswimschoolbackend.onrender.com"
+  const url = "https://dolphinswimschoolbackend.onrender.com";
 
   //To edit event
-    async function getDetails(
-    ) {
-      const response = await fetch(`${url}/api/event/student/${id}`, {
-        method: "get",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-        }
-      });
-      const jResponse = await response.json();
-      console.log(jResponse);
-      if (response.status === 401) {
-        console.log(`${jResponse.message}`);
-      } else {
-        setStudents({...jResponse})
-        console.log(students)
-      }
-      return jResponse;  }
+  async function getDetails() {
+    const response = await fetch(`${url}/api/event/student/${id}`, {
+      method: "get",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+    const jResponse = await response.json();
+    console.log(jResponse);
+    if (response.status === 401) {
+      console.log(`${jResponse.message}`);
+    } else {
+      setStudents({ ...jResponse });
+      console.log(students);
+    }
+    return jResponse;
+  }
 
   return (
     <>
@@ -65,22 +62,29 @@ const ViewDetails = ({ event }) => {
               ></button>
             </div>
             <div class="modal-body">
-            <h1 className="display-8 text-center"><b><u>List of students</u></b></h1>
-            {students?Object.values(students).map((name)=><p className="text-center">{name.name}</p>):""}
+              <h1 className="display-8 text-center">
+                <b>
+                  <u>List of students</u>
+                </b>
+              </h1>
+              {students
+                ? Object.values(students).map((name) => (
+                    <p className="text-center">{name.name}</p>
+                  ))
+                : ""}
             </div>
 
-                <button
-                  type="button"
-                  class="btn btn-danger"
-                  data-bs-dismiss="modal"
-                >
-                  Close
-                </button>
-              </div>
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
           </div>
+        </div>
       </div>
     </>
   );
-
 };
 export default ViewDetails;
